@@ -1,0 +1,652 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="翻手机壳">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="vue 系列 - vue3 新特性Composition API组合式 api ，允许开发者使用导入函数的方式来替代配置类型开发。  主要添加了 Reactivity API，例如 ref()and reactive()，它允许我们直接创建反应状态、计算状态和观察者。 声明周期钩子 依赖注入  为什么使用组合 API更好的逻辑重用解决了 mixins 的所有缺点，mixins 的缺点如果多个，主要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue系列 - vue3新特性">
+<meta property="og:url" content="http://boke.wj718.xyz/2022/08/15/vue%E7%B3%BB%E5%88%97%20-%20vue3%E6%96%B0%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:site_name" content="翻手机壳的网站">
+<meta property="og:description" content="vue 系列 - vue3 新特性Composition API组合式 api ，允许开发者使用导入函数的方式来替代配置类型开发。  主要添加了 Reactivity API，例如 ref()and reactive()，它允许我们直接创建反应状态、计算状态和观察者。 声明周期钩子 依赖注入  为什么使用组合 API更好的逻辑重用解决了 mixins 的所有缺点，mixins 的缺点如果多个，主要">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://boke.wj718.xyz/img/vue.png">
+<meta property="article:published_time" content="2022-08-15T00:20:11.000Z">
+<meta property="article:modified_time" content="2022-08-15T15:40:13.869Z">
+<meta property="article:author" content="翻手机壳">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://boke.wj718.xyz/img/vue.png">
+  
+  
+  
+  <title>vue系列 - vue3新特性 - 翻手机壳的网站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"boke.wj718.xyz","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>翻手机壳的网站</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="vue系列 - vue3新特性"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-15 08:20" pubdate>
+          2022年8月15日 早上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">vue系列 - vue3新特性</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="vue-系列-vue3-新特性"><a href="#vue-系列-vue3-新特性" class="headerlink" title="vue 系列 - vue3 新特性"></a>vue 系列 - vue3 新特性</h1><h2 id="Composition-API"><a href="#Composition-API" class="headerlink" title="Composition API"></a>Composition API</h2><p>组合式 api ，允许开发者使用导入函数的方式来替代配置类型开发。</p>
+<ul>
+<li>主要添加了 Reactivity API，例如 ref()and reactive()，它允许我们直接创建反应状态、计算状态和观察者。</li>
+<li>声明周期钩子</li>
+<li>依赖注入</li>
+</ul>
+<h3 id="为什么使用组合-API"><a href="#为什么使用组合-API" class="headerlink" title="为什么使用组合 API"></a>为什么使用组合 API</h3><h4 id="更好的逻辑重用"><a href="#更好的逻辑重用" class="headerlink" title="更好的逻辑重用"></a>更好的逻辑重用</h4><p>解决了 mixins 的所有缺点，mixins 的缺点如果多个，主要重点在逻辑重用。</p>
+<h4 id="更灵活的代码"><a href="#更灵活的代码" class="headerlink" title="更灵活的代码"></a>更灵活的代码</h4><p>在编写 options api 时候，我们会在不同的生命周期、data、以及 methos 等 options 中配置不通的逻辑代码，这样会使代码变得复杂。逻辑混淆在一起，对于阅读开发以及后期维护，都会是很难进行的。 在使用 compositionApi 的时候，我们可以将重点放在一起，并且能够提取到不同的文件中。这种减少重构的摩擦是维护大型项目的关键。</p>
+<h4 id="更好的类型断言"><a href="#更好的类型断言" class="headerlink" title="更好的类型断言"></a>更好的类型断言</h4><p>在 ts 的开发时，提供了不通的类型，方便开发者使用</p>
+<h4 id="更小的生产包和更少的开销"><a href="#更小的生产包和更少的开销" class="headerlink" title="更小的生产包和更少的开销"></a>更小的生产包和更少的开销</h4><p><code>&lt;script setup&gt;</code> 更高效，更易于缩小，这事因为 scrip setup 被编译成内连在同一<code>&lt;script setup&gt;</code>代码范围内的函数，没有了实例代理，所以代码更小</p>
+<h2 id="SFC-Composition-API-Syntax-Sugar"><a href="#SFC-Composition-API-Syntax-Sugar" class="headerlink" title="SFC Composition API Syntax Sugar"></a>SFC Composition API Syntax Sugar</h2><p>提供了一些编译的语法糖，<code>&lt;script setup&gt;</code>推荐在 sfc 和 composition Api 开发时使用</p>
+<h2 id="Teleport"><a href="#Teleport" class="headerlink" title="Teleport"></a>Teleport</h2><p>在某些场景下，我们需要标签的渲染位置有所改变，比如 modal，在子组件中，我们想要把页面渲染在 body 层级，而不是子组件中，此时我们就可以用到<code>&lt;Teleport&gt;</code>，</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">&lt;Teleport to=<span class="hljs-string">&quot;body&quot;</span>&gt;<br>  &lt;div v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;open&quot;</span> <span class="hljs-keyword">class</span>=&quot;<span class="hljs-symbol">modal</span>&quot;&gt;<br>    &lt;<span class="hljs-symbol">p</span>&gt;<span class="hljs-symbol">Hello</span> <span class="hljs-symbol">from</span> <span class="hljs-symbol">the</span> <span class="hljs-symbol">modal</span>!&lt;/<span class="hljs-symbol">p</span>&gt;<br>    &lt;<span class="hljs-symbol">button</span> @<span class="hljs-symbol">click</span>=&quot;<span class="hljs-symbol">open</span> = <span class="hljs-symbol">false</span>&quot;&gt;<span class="hljs-symbol">Close</span>&lt;/<span class="hljs-symbol">button</span>&gt;<br>  &lt;/<span class="hljs-symbol">div</span>&gt;<br>&lt;/<span class="hljs-symbol">Teleport</span>&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Fragments"><a href="#Fragments" class="headerlink" title="Fragments"></a>Fragments</h2><p>支持多个跟标签</p>
+<h2 id="Emits-Component-Option"><a href="#Emits-Component-Option" class="headerlink" title="Emits Component Option"></a>Emits Component Option</h2><p>添加 emits 属性验证</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;<br>  <span class="hljs-attr">emits</span>: &#123;<br>    <span class="hljs-comment">// no validation</span><br>    <span class="hljs-attr">click</span>: <span class="hljs-literal">null</span>,<br><br>    <span class="hljs-comment">// with validation</span><br>    <span class="hljs-attr">submit</span>: <span class="hljs-function">(<span class="hljs-params">payload</span>) =&gt;</span> &#123;<br>      <span class="hljs-keyword">if</span> (payload.<span class="hljs-property">email</span> &amp;&amp; payload.<span class="hljs-property">password</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">warn</span>(<span class="hljs-string">`Invalid submit event payload!`</span>)<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="createRenderer-API-from-vue-x2F-runtime-core-to-create-custom-renderers"><a href="#createRenderer-API-from-vue-x2F-runtime-core-to-create-custom-renderers" class="headerlink" title="createRenderer API from @vue&#x2F;runtime-core to create custom renderers"></a>createRenderer API from @vue&#x2F;runtime-core to create custom renderers</h2><p>自定义渲染器</p>
+<h2 id="SFC-State-driven-CSS-Variables-v-bind-in-lt-style-gt"><a href="#SFC-State-driven-CSS-Variables-v-bind-in-lt-style-gt" class="headerlink" title="SFC State-driven CSS Variables (v-bind in &lt;style&gt;)"></a>SFC State-driven CSS Variables (v-bind in <code>&lt;style&gt;</code>)</h2><p>SfC css 变量,css 可以支持 v-bind 语法，直接和变量绑定，这样更简单的去绑定 css 样式<br>setup 写法</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript">  <span class="hljs-keyword">const</span> red = <span class="hljs-string">&quot;red&quot;</span>;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-id">#app</span> &#123;</span><br><span class="language-css">  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">v-bind</span>(red);</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>options 写法</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="language-javascript"></span><br><span class="language-javascript"><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> &#123;</span><br><span class="language-javascript">  <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;App&quot;</span>,</span><br><span class="language-javascript">  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) &#123;</span><br><span class="language-javascript">    <span class="hljs-keyword">return</span> &#123;</span><br><span class="language-javascript">      <span class="hljs-attr">time</span>: <span class="hljs-number">1000</span>,</span><br><span class="language-javascript">      <span class="hljs-attr">them</span>: &#123;</span><br><span class="language-javascript">        <span class="hljs-attr">red</span>: <span class="hljs-string">&quot;red&quot;</span>,</span><br><span class="language-javascript">      &#125;,</span><br><span class="language-javascript">    &#125;;</span><br><span class="language-javascript">  &#125;,</span><br><span class="language-javascript">&#125;;</span><br><span class="language-javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css"></span><br><span class="language-css"><span class="hljs-selector-id">#app</span> &#123;</span><br><span class="language-css">  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">v-bind</span>(<span class="hljs-string">&quot;them.red&quot;</span>);</span><br><span class="language-css">&#125;</span><br><span class="language-css"></span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+<p>注意如果 red 是多层的引用类型的，则需要在变量中使用引号给包裹住</p>
+<h2 id="SFC-lt-style-scoped-gt-can-now-include-global-rules-or-rules-that-target-only-slotted-content"><a href="#SFC-lt-style-scoped-gt-can-now-include-global-rules-or-rules-that-target-only-slotted-content" class="headerlink" title="SFC &lt;style scoped&gt;  can now include global rules or rules that target only slotted content"></a>SFC <code>&lt;style scoped&gt; </code> can now include global rules or rules that target only slotted content</h2><p>vue 的深度选择器的语法变化</p>
+<ul>
+<li><p>v2</p>
+<ul>
+<li><code>&gt;&gt;&gt;</code></li>
+<li><code>/deep/</code></li>
+</ul>
+</li>
+<li><p>v3</p>
+<ul>
+<li><code>::v-deep()</code> 或者 <code>:deep()</code></li>
+<li>默认情况下，从父级传入的插槽内容不再受子级样式的影响。相反，孩子现在需要使用新的::v-slotted()伪元素来专门针对插槽内容</li>
+<li>新的伪元素<code>::v-global()</code>可用于在<code>&lt;style scoped&gt;</code>块内应用全局规则：</li>
+</ul>
+<figure class="highlight wren"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs wren">::<span class="hljs-variable">v</span><span class="hljs-operator">-</span><span class="hljs-variable">deep</span> .<span class="hljs-property">bar</span> &#123;&#125; <span class="hljs-comment">//不推荐</span><br>::<span class="hljs-variable">v</span><span class="hljs-operator">-</span><span class="hljs-title function_">deep</span>(.<span class="hljs-params">bar</span>) &#123;&#125;<br>::<span class="hljs-variable">v</span><span class="hljs-operator">-</span><span class="hljs-title function_">slotted</span>(.<span class="hljs-params">foo</span>) &#123;&#125;<br>::<span class="hljs-variable">v</span><span class="hljs-operator">-</span><span class="hljs-title function_">global</span>(.<span class="hljs-params">foo</span>) &#123;&#125;<br></code></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Suspense-experimental"><a href="#Suspense-experimental" class="headerlink" title="Suspense experimental"></a>Suspense experimental</h2><p>新标签<code>&lt;Suspense /&gt;</code>,具体使用后面会说到</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue%E7%B3%BB%E5%88%97/" class="category-chain-item">vue系列</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vue/">#vue</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>vue系列 - vue3新特性</div>
+      <div>http://boke.wj718.xyz/2022/08/15/vue系列 - vue3新特性/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>翻手机壳</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月15日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/08/14/vue%E7%B3%BB%E5%88%97%20-%20%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/" title="vue系列 - 权限控制">
+                        <span class="hidden-mobile">vue系列 - 权限控制</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
