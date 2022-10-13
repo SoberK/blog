@@ -16,22 +16,24 @@
   <meta name="author" content="翻手机壳">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1、H5 页面如何进行首屏优化 路由懒加载 使用 SPA 路由拆分，首先保证首页加载   服务端 ssr 传统前后台分离渲染过 Ssr 渲染页面过程简单，所有性能好 如果是纯 H5 页面，ssr 是性能优化的中级方案   App 预取 如果 H5 在 App WebView 中展示，可使用 App 预取 用户访问列表页时，App 预加载文章首屏内容 用户进入 H5 页，直接从 App 中获取内容，">
+    <meta name="description" content="vue 系列 - Suspense在使用异步组件的时候，为了获得更好的交互体验，新增了 Suspense,Suspense 有两个插槽一个是#default 一个是#fallback，其中 fallback 就是在异步请求的时候展示的插槽 123456789101112131415161718192021222324252627282930&lt;Suspense&gt;  父组件  &lt;te">
 <meta property="og:type" content="article">
-<meta property="og:title" content="提升 - 工作经验">
-<meta property="og:url" content="http://boke.wj718.xyz/2022/08/13/%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E5%B7%A5%E4%BD%9C%E7%BB%8F%E9%AA%8C/index.html">
+<meta property="og:title" content="vue系列 - Suspense">
+<meta property="og:url" content="http://boke.wj718.xyz/2022/08/16/vue%E7%B3%BB%E5%88%97%20-%20Suspense/index.html">
 <meta property="og:site_name" content="翻手机壳的网站">
-<meta property="og:description" content="1、H5 页面如何进行首屏优化 路由懒加载 使用 SPA 路由拆分，首先保证首页加载   服务端 ssr 传统前后台分离渲染过 Ssr 渲染页面过程简单，所有性能好 如果是纯 H5 页面，ssr 是性能优化的中级方案   App 预取 如果 H5 在 App WebView 中展示，可使用 App 预取 用户访问列表页时，App 预加载文章首屏内容 用户进入 H5 页，直接从 App 中获取内容，">
+<meta property="og:description" content="vue 系列 - Suspense在使用异步组件的时候，为了获得更好的交互体验，新增了 Suspense,Suspense 有两个插槽一个是#default 一个是#fallback，其中 fallback 就是在异步请求的时候展示的插槽 123456789101112131415161718192021222324252627282930&lt;Suspense&gt;  父组件  &lt;te">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-13T02:24:31.000Z">
-<meta property="article:modified_time" content="2022-09-30T08:14:07.676Z">
+<meta property="og:image" content="http://boke.wj718.xyz/img/vue.png">
+<meta property="article:published_time" content="2022-08-16T00:16:11.000Z">
+<meta property="article:modified_time" content="2022-08-16T00:19:42.370Z">
 <meta property="article:author" content="翻手机壳">
-<meta property="article:tag" content="js">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://boke.wj718.xyz/img/vue.png">
   
   
   
-  <title>提升 - 工作经验 - 翻手机壳的网站</title>
+  <title>vue系列 - Suspense - 翻手机壳的网站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="提升 - 工作经验"></span>
+            <span id="subtitle" data-typed-text="vue系列 - Suspense"></span>
           
         </div>
 
@@ -207,8 +209,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-13 10:24" pubdate>
-          2022年8月13日 上午
+        <time datetime="2022-08-16 08:16" pubdate>
+          2022年8月16日 早上
         </time>
       </span>
     
@@ -219,7 +221,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.5k 字
+          934 字
         
       </span>
     
@@ -230,7 +232,7 @@
         
         
         
-          21 分钟
+          8 分钟
         
       </span>
     
@@ -268,195 +270,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">提升 - 工作经验</h1>
+            <h1 style="display: none">vue系列 - Suspense</h1>
             
             
               <div class="markdown-body">
                 
-                <h4 id="1、H5-页面如何进行首屏优化"><a href="#1、H5-页面如何进行首屏优化" class="headerlink" title="1、H5 页面如何进行首屏优化"></a>1、H5 页面如何进行首屏优化</h4><ul>
-<li>路由懒加载<ul>
-<li>使用 SPA</li>
-<li>路由拆分，首先保证首页加载</li>
-</ul>
-</li>
-<li>服务端 ssr<ul>
-<li>传统前后台分离渲染过</li>
-<li>Ssr 渲染页面过程简单，所有性能好</li>
-<li>如果是纯 H5 页面，ssr 是性能优化的中级方案</li>
-</ul>
-</li>
-<li>App 预取<ul>
-<li>如果 H5 在 App WebView 中展示，可使用 App 预取</li>
-<li>用户访问列表页时，App 预加载文章首屏内容</li>
-<li>用户进入 H5 页，直接从 App 中获取内容，瞬间展示首屏</li>
-</ul>
-</li>
-<li>分页</li>
-<li>图片懒加载<ul>
-<li>针对详情页</li>
-<li>默认值展示文本内容，让后触发图片的懒加载</li>
-<li>提前设置图片尺寸，尽量只重绘不重排</li>
-</ul>
-</li>
-<li>Hybrid<ul>
-<li>提前将 html、js、css 下载到 app 内部，</li>
-<li>在 app webview 中使用 file&#x2F;&#x2F;:协议直接加载页面文件</li>
-<li>再用 ajax 获取内容并展示</li>
-</ul>
-</li>
-</ul>
-<h4 id="2、后端放回-10w-条数据，前端怎么展示"><a href="#2、后端放回-10w-条数据，前端怎么展示" class="headerlink" title="2、后端放回 10w 条数据，前端怎么展示"></a>2、后端放回 10w 条数据，前端怎么展示</h4><ul>
-<li>设计不合理，本省技术方案设计就不合理</li>
-<li>主动和面试官共同此事</li>
-<li>非要这么做，那么寻找解决方案<ul>
-<li>js 处理的话，dom 渲染会非常卡</li>
-<li>自定义中间层</li>
-<li>虚拟列表<ul>
-<li>只渲染可是区域的 dom</li>
-<li>其他隐藏的区域不展示，只用 div 的高度</li>
-<li>随着滚动条的滚动控制展示，不在可是区域的不展示</li>
-<li>第三方控件<ul>
-<li>Vue-virtual-scroll-list</li>
-<li>React-virtualiszed</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="3、前端常用的设计模式有那些？并说明使用场景（javascript-设计模式系统讲解与应用）"><a href="#3、前端常用的设计模式有那些？并说明使用场景（javascript-设计模式系统讲解与应用）" class="headerlink" title="3、前端常用的设计模式有那些？并说明使用场景（javascript 设计模式系统讲解与应用）"></a>3、前端常用的设计模式有那些？并说明使用场景（javascript 设计模式系统讲解与应用）</h4><ul>
-<li><p>设计原则</p>
-<ul>
-<li>最重要的思想：开放封闭原则</li>
-<li>对扩展开放</li>
-<li>对修改封闭</li>
-</ul>
-</li>
-<li><p>工厂模式</p>
-<ul>
-<li><p>用一个工厂函数，来创建实例，影藏 new</p>
-</li>
-<li><p>如 jq 的$函数</p>
-</li>
-<li><p>&#96;&#96;&#96;<br> class Foo{}<br>    function factory(a,b,c){<br>        return new Foo();<br>    }<br>    const f &#x3D; factory(1,2,3)</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs markdown"><br><span class="hljs-bullet">-</span> 单列模式<br><br><span class="hljs-bullet">  -</span> 全局唯一的实例（无法生成第二个）<br><br><span class="hljs-bullet">  -</span> 如 vuex、redux、store<br><br><span class="hljs-bullet">  -</span> 如全局唯一的 dialog model<br><br></code></pre></td></tr></table></figure>
-<p>class SingleTon{<br>private static instance:SignleTon|null &#x3D; null<br>private constructor(){}<br>public static getInstance(): SingleTon {<br>    if(install){<br>            return	this.instance<br>    }<br>     this.instance  &#x3D; new SingleTon()<br>     return this.instance<br>}<br>fn10(){}<br>fn20(){}<br>}<br>const s &#x3D; SingleTon.getInstance()<br>s.fn1()<br>s. fn2()<br>cost s1 &#x3D; SingleTon.getInstance()<br>c&#x3D;&#x3D;&#x3D; c1 &#x2F;&#x2F;false</p>
-<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs moonscript"><br>- 代理模式<br><br>  - Proxy<br>  - vue3 的设计就是一种场景<br><br>- 观察者模式<br><br>  - 一个主题，一个观察者，主题变后，触发观察者执行<br><br>- 发布订阅模式<br><br>  - ```<br>    event.on(<span class="hljs-string">&#x27;event-key&#x27;</span>,<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;&#125;)<br>    event.emit(<span class="hljs-string">&#x27;event-key&#x27;</span>,<span class="hljs-function"><span class="hljs-params">()</span>=&gt;</span>&#123;&#125;)<br></code></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>装饰器模式</p>
-<ul>
-<li>员工能不变，增加一些新功能</li>
-<li>es 和 typescript 的 Decorator</li>
-</ul>
-</li>
-</ul>
-<h3 id="4、观察者模式和发布订阅模式之间的区别"><a href="#4、观察者模式和发布订阅模式之间的区别" class="headerlink" title="4、观察者模式和发布订阅模式之间的区别"></a>4、观察者模式和发布订阅模式之间的区别</h3><p>![image-20220712144315734](&#x2F;Users&#x2F;fanrongkong&#x2F;Library&#x2F;Application Support&#x2F;typora-user-images&#x2F;image-20220712144315734.png)</p>
-<ul>
-<li>观察者模式<ul>
-<li>Subject 和 Observer 直接绑定，没有中间媒介</li>
-<li>如 addeventListener</li>
-</ul>
-</li>
-<li>发布订阅<ul>
-<li>是 publish 和 observer 互不相识，需要中间媒介</li>
-<li>如 eventBus</li>
-</ul>
-</li>
-</ul>
-<h4 id="5、你在实际工作中，做过那些-vue-优化"><a href="#5、你在实际工作中，做过那些-vue-优化" class="headerlink" title="5、你在实际工作中，做过那些 vue 优化"></a>5、你在实际工作中，做过那些 vue 优化</h4><ul>
-<li>v-if 和 v-show</li>
-<li>v-for 使用 key</li>
-<li>使用 compted 缓存</li>
-<li>keep-alive 缓存组件</li>
-<li>异步组件</li>
-<li>路由懒加载</li>
-<li>服务端渲染 ssr</li>
-</ul>
-<h4 id="6、你在实际工作中，做过那些-vue-的坑"><a href="#6、你在实际工作中，做过那些-vue-的坑" class="headerlink" title="6、你在实际工作中，做过那些 vue 的坑"></a>6、你在实际工作中，做过那些 vue 的坑</h4><ul>
-<li>内存泄漏<ul>
-<li>全局变量、全局事件、全局定时器、自定义时间没有销毁导致内存泄漏</li>
-</ul>
-</li>
-<li>Vue2<ul>
-<li>data 新增要使用 vue.set</li>
-<li>data 删除的时候要用 vue.delete</li>
-<li>无法直接修改数据，arr[index] &#x3D; value</li>
-</ul>
-</li>
-<li>路由切换到 scroll 到顶部<ul>
-<li>spa 的通病</li>
-<li>如列表页，滚到第二屏幕，点击进入详情页</li>
-<li>在返回到列表也就 scroll 到顶部<ul>
-<li>在列表缓存到 scroll 位置和数据，返回时候直接滚动到原来的位置</li>
-<li>MPA+app webview</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="7、如何统一监听-vue-的报错？"><a href="#7、如何统一监听-vue-的报错？" class="headerlink" title="7、如何统一监听 vue 的报错？"></a>7、如何统一监听 vue 的报错？</h4><ul>
-<li><p>window.onerror</p>
-<ul>
-<li><p>全局监听所有 js 错误</p>
-</li>
-<li><p>但他是 js 级别的，识别不了 vue 组件信息</p>
-</li>
-<li><p>捕捉一些 vue 监听不到的错误</p>
-</li>
-</ul>
-</li>
-<li><p>errorCaptured 生命周期</p>
-<ul>
-<li>监听所有下级组件的报错信息</li>
-<li>返回 false 不会想下级捕获</li>
-</ul>
-</li>
-<li><p>erroHandler</p>
-<ul>
-<li>app.config.errorHandler &#x3D; ( error,vm,info)</li>
-</ul>
-</li>
-</ul>
-<h4 id="8、h5-很慢，你改如何排查新能问题"><a href="#8、h5-很慢，你改如何排查新能问题" class="headerlink" title="8、h5 很慢，你改如何排查新能问题"></a>8、h5 很慢，你改如何排查新能问题</h4><ul>
-<li><p>前端性能指标(performance)</p>
-<ul>
-<li><p>first paint （FP）（第一次渲染）</p>
-</li>
-<li><p>First contentful paint（FCP）（第一次有内容的渲染）</p>
-</li>
-<li><p>first meaningful paint (已弃用，第一次有意义的渲染)</p>
-</li>
-<li><p>DomContentLoaded（DCL）</p>
-</li>
-<li><p>largest Contentful paint （LCP）</p>
-</li>
-<li><p>Load （L）</p>
-</li>
-</ul>
-</li>
-<li><p>Lighthouse</p>
-<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs jboss-cli">npm i lighthouse -g<br>lighthouse http:<span class="hljs-string">//www.baidu.com</span> <span class="hljs-params">--view</span> <span class="hljs-params">--presst</span><br></code></pre></td></tr></table></figure>
-</li>
-<li><p>分析是网页加载慢还是渲染慢</p>
-<ul>
-<li>网页加载慢<ul>
-<li>优化服务器硬件配置，使用 cdn</li>
-<li>路由懒加载，大组建异步加载-减少主包的体积</li>
-<li>优化 http 缓存策略</li>
-</ul>
-</li>
-<li>如果渲染慢<ul>
-<li>优化服务端接口（如 Ajax 获取数据慢）</li>
-<li>继续分析，优化前端组件内部的逻辑（参考 Vue React 优化）</li>
-<li>服务端渲染 SSR</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h4 id="9、准备一个开发遇到的问题"><a href="#9、准备一个开发遇到的问题" class="headerlink" title="9、准备一个开发遇到的问题"></a>9、准备一个开发遇到的问题</h4><p>。。。。。</p>
+                <h1 id="vue-系列-Suspense"><a href="#vue-系列-Suspense" class="headerlink" title="vue 系列 - Suspense"></a>vue 系列 - Suspense</h1><p>在使用异步组件的时候，为了获得更好的交互体验，新增了 Suspense,Suspense 有两个插槽一个是#default 一个是#fallback，其中 fallback 就是在异步请求的时候展示的插槽</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs handlebars"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Suspense</span>&gt;</span>  父组件</span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">default</span>&gt;</span></span><br><span class="language-xml">    <span class="hljs-tag">&lt;<span class="hljs-name">HelloWorld</span> <span class="hljs-attr">msg</span>=<span class="hljs-string">&quot;Vite + Vue&quot;</span> /&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">fallback</span>&gt;</span></span><br><span class="language-xml">    loading......</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">Suspense</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span>  <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; defineAsyncComponent &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> <span class="hljs-title class_">HelloWorld</span> = <span class="hljs-title function_">defineAsyncComponent</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">import</span>(<span class="hljs-string">&#x27;./components/HelloWorld.vue&#x27;</span>));</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml">子组件</span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span></span><br><span class="language-xml">  <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">&#123;&#123; <span class="hljs-name">msg</span> &#125;&#125;</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span><br><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript"></span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">import</span> &#123; ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span></span></span><br><span class="language-javascript"><span class="language-xml">defineProps&lt;&#123; <span class="hljs-attr">msg</span>: string &#125;&gt;()</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">function</span> <span class="hljs-title function_">featchData</span>(<span class="hljs-params"></span>) &#123;</span></span><br><span class="language-javascript"><span class="language-xml">  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Promise</span>(<span class="hljs-function"><span class="hljs-params">resolve</span> =&gt;</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;</span></span><br><span class="language-javascript"><span class="language-xml">      <span class="hljs-title function_">resolve</span>(<span class="hljs-string">&#x27;Vite + Vue&#x27;</span>)</span></span><br><span class="language-javascript"><span class="language-xml">    &#125;, <span class="hljs-number">3000</span>)</span></span><br><span class="language-javascript"><span class="language-xml">  &#125;)</span></span><br><span class="language-javascript"><span class="language-xml">&#125;</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">await</span> <span class="hljs-title function_">featchData</span>()</span></span><br><span class="language-javascript"><span class="language-xml"><span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)</span></span><br><span class="language-javascript"><span class="language-xml"></span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></span><br><span class="language-xml"></span><br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -475,7 +295,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E6%8F%90%E5%8D%87/" class="category-chain-item">提升</a>
+  <a href="/categories/vue%E7%B3%BB%E5%88%97/" class="category-chain-item">vue系列</a>
   
   
 
@@ -490,7 +310,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/js/">#js</a>
+        <a href="/tags/vue/">#vue</a>
       
     </div>
   
@@ -502,8 +322,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>提升 - 工作经验</div>
-      <div>http://boke.wj718.xyz/2022/08/13/第七章 工作经验/</div>
+      <div>vue系列 - Suspense</div>
+      <div>http://boke.wj718.xyz/2022/08/16/vue系列 - Suspense/</div>
     </div>
     <div class="license-meta">
       
@@ -515,7 +335,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月13日</div>
+          <div>2022年8月16日</div>
         </div>
       
       
@@ -545,9 +365,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/13/%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA%20-%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E7%9A%84%E5%80%BC%E4%B8%8Enew%E5%AE%9E%E4%BE%8B%E5%85%B3%E7%B3%BB/" title="查漏补缺 - 构造函数返回的值与new实例关系">
+                      <a href="/2022/08/17/vue%E7%B3%BB%E5%88%97%20-%20ref%E5%92%8Cunref/" title="vue系列 - ref和unref">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">查漏补缺 - 构造函数返回的值与new实例关系</span>
+                        <span class="hidden-mobile">vue系列 - ref和unref</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -555,8 +375,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/13/%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E7%9F%A5%E8%AF%86%E6%B7%B1%E5%BA%A6/" title="提升 - 深度知识">
-                        <span class="hidden-mobile">提升 - 深度知识</span>
+                      <a href="/2022/08/15/vue%E7%B3%BB%E5%88%97%20-%20vue3%E6%96%B0%E7%89%B9%E6%80%A7/" title="vue系列 - vue3新特性">
+                        <span class="hidden-mobile">vue系列 - vue3新特性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
