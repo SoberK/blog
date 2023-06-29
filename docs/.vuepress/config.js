@@ -1,6 +1,6 @@
 // .vuepress/config.js
 module.exports = {
-    base:'https://SoberK.github.io/blog/',
+    base:'/blog/',
     themeConfig: {
         nav: [
             { text: '面试', link: '/interview/' },
