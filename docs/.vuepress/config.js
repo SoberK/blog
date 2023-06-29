@@ -1,10 +1,9 @@
 // .vuepress/config.js
 module.exports = {
-    base:'https://SoberK.github.io/blog/',
+    // base:'https://SoberK.github.io/blog/',
     themeConfig: {
         nav: [
             { text: '面试', link: '/interview/' },
-            { text: '技术文章', link: '/B/' },
         ],
         sidebar:{
             '/interview/':[
@@ -86,14 +85,7 @@ module.exports = {
                 },
                 
             ],
-            '/A/': [
-                'a',
-                'b',
-            ],
-            '/B/': [
-                'a',
-                'b',
-            ],
+           
         }
     }
 }

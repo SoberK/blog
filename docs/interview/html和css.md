@@ -203,11 +203,7 @@ css支持变量的引用。只需要在全局添加变量，在局部使用var�
 
 + 继承：变量是可以继承的
 
-  <img src="./assets/css-1.png" alt="css-1" style="zoom:30%;" />
 
-  <img src="/Users/fanrongkong/笔记本/面试打卡/css/css/assets/css-2.png" alt="css-2" style="zoom:33%;" />
-
-  <img src="./assets/css-3.png" alt="css-3" style="zoom:33%;" />
 
 ### 3、sass 常用
 
