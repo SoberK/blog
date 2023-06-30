@@ -1,6 +1,6 @@
 // .vuepress/config.js
 module.exports = {
-    // base:'/blog/',
+    base:'/blog/',
     title:'翻手机壳',
     themeConfig: {
         nav: [
