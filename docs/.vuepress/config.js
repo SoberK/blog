@@ -1,9 +1,12 @@
 // .vuepress/config.js
 module.exports = {
-    base:'/blog/',
+    // base:'/blog/',
+    title:'翻手机壳',
     themeConfig: {
         nav: [
-            { text: '面试', link: '/interview/' },
+            { text: '博客', link: '/blog/design/单例模式' },
+            { text: '面试', link: '/interview/ms/第七章 工作经验' },
+            { text: '工具', link: '' },
         ],
         sidebar:{
             '/interview/':[
@@ -85,6 +88,59 @@ module.exports = {
                 },
                 
             ],
+            '/blog/':[
+                {
+                    title: '设计模式',
+                    children: [
+                        '/blog/design/单例模式',
+                        '/blog/design/策略模式'],
+                },
+                {
+                    title: 'git',
+                    path: '/blog/git/git'
+                        
+                },
+                {
+                    title: 'pinia',
+                    path: '/blog/pinia/pinia'
+                },
+                {
+                    title: 'typescript',
+                    children: [
+                        '/blog/typescript/1.类的装饰器', 
+                        '/blog/typescript/2.面向对象编程',
+                        '/blog/typescript/3.工具类型'
+                    ]
+                },
+                {
+                    title: 'vite',
+                    children: [
+                        '/blog/vite/环境变量',
+                        '/blog/vite/基本概念',
+                        '/blog/vite/plugins'
+                    ]
+                },
+                {
+                    title: 'Vue-pure-admin项目分析',
+                    children: [
+                        '/blog/Vue-pure-admin项目分析/1.插件相关',
+                        '/blog/Vue-pure-admin项目分析/2.路由分析',
+                    ]
+                },
+                {
+                    title: 'vue3',
+                    children: [
+                        '/blog/vue3/常用api'
+                    ]
+                },
+                {
+                    title: 'webpack',
+                    children: [
+                        '/blog/webpack/web简单使用'
+                    ]
+                },
+                
+            ]
            
         }
     }
