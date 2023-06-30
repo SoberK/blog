@@ -36,7 +36,6 @@ webpack ./src/main.js --mode production //打包
 
 ```main.js```
 
-<img src="./static/1.png" alt="1" style="zoom:50%;" />
 
 打包完成会生成一个dist文件夹
 
