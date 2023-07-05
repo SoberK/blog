@@ -1,10 +1,12 @@
+
+console.log(process.env.npm_config_argv)
 // .vuepress/config.js
 module.exports = {
-    base:'/blog/',
+    base: '/blog/',
     title:'翻手机壳',
     themeConfig: {
         nav: [
-            { text: '博客', link: '/blog/design/单例模式' },
+            { text: '知识库', link: '/blog/design/单例模式' },
             { text: '面试', link: '/interview/ms/第七章 工作经验' },
             { text: '工具', link: '' },
         ],
