@@ -92,6 +92,14 @@ module.exports = {
             ],
             '/blog/':[
                 {
+                    title: 'nodejs',
+                    children: [
+                        '/blog/nodejs/docker', 
+                        '/blog/nodejs/mongo',
+                         '/blog/nodejs/基本学习'
+                    ],
+                },
+                {
                     title: '设计模式',
                     children: [
                         '/blog/design/单例模式',
@@ -142,7 +150,8 @@ module.exports = {
                     ]
                 },
                 
-            ]
+            ],
+         
            
         }
     }

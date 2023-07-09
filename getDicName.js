@@ -29,11 +29,11 @@ function getAllFilesInFolder(folderPath) {
         }
     });
 
-    return fileNames.sort(naturalSort);
+    return fileNames//.sort(naturalSort);
 }
 
 // 指定文件夹的路径
-const folderPath = './docs/blog/webpack';
+const folderPath = './docs/blog/nodejs';
 
 // 获取文件夹中的所有文件名称
 const fileNames = getAllFilesInFolder(folderPath);
