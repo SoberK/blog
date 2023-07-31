@@ -88,9 +88,27 @@ module.exports = {
                         '/interview/vue/50.v-if和v-show的区别'
                     ],
                 },
+                {
+                    title: 'node相关',
+                    children: [
+                        '/interview/node',
+                    ],
+                }, {
+                    title: 'webpack相关',
+                    children: [
+                        '/interview/webpack',
+                    ],
+                },
                 
             ],
             '/blog/':[
+                {
+                    title: 'django',
+                    children: [
+                        '/blog/django/models',
+                        '/blog/django/study',
+                    ],
+                },
                 {
                     title: 'nodejs',
                     children: [
@@ -144,9 +162,10 @@ module.exports = {
                     ]
                 },
                 {
-                    title: 'webpack',
+                    title: '工程化',
                     children: [
-                        '/blog/webpack/web简单使用'
+                        '/blog/project/web简单使用',
+                        '/blog/project/babel',
                     ]
                 },
                 
