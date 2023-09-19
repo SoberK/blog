@@ -103,6 +103,12 @@ module.exports = {
             ],
             '/blog/':[
                 {
+                    title: 'linux',
+                    children: [
+                        '/blog/linux/目录',
+                    ],
+                },
+                {
                     title: 'django',
                     children: [
                         '/blog/django/models',
@@ -166,6 +172,8 @@ module.exports = {
                     children: [
                         '/blog/project/web简单使用',
                         '/blog/project/babel',
+                        '/blog/project/webpack',
+                        '/blog/project/脚手架',
                     ]
                 },
                 
