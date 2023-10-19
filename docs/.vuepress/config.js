@@ -106,6 +106,8 @@ module.exports = {
                     title: 'linux',
                     children: [
                         '/blog/linux/目录',
+                        '/blog/linux/docker',
+                        '/blog/linux/nginx',
                     ],
                 },
                 {
