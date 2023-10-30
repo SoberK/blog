@@ -170,6 +170,12 @@ module.exports = {
                     ]
                 },
                 {
+                    title: 'react18',
+                    children: [
+                        '/blog/react/框架'
+                    ]
+                },
+                {
                     title: '工程化',
                     children: [
                         '/blog/project/web简单使用',
