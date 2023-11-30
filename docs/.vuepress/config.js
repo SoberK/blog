@@ -8,9 +8,18 @@ module.exports = {
         nav: [
             { text: '知识库', link: '/blog/design/单例模式' },
             { text: '面试', link: '/interview/ms/第七章 工作经验' },
-            { text: '工具', link: '' },
+            { text: '工作经验总结', link: '/experience/request/index' },
         ],
         sidebar:{
+            '/experience/':[
+                {
+                    title:'请求相关',
+                    children:[
+                        '/experience/request/index'
+                    ]
+
+                }
+            ],
             '/interview/':[
                 {
                     title: '2周面试',
@@ -172,7 +181,16 @@ module.exports = {
                 {
                     title: 'react18',
                     children: [
-                        '/blog/react/框架'
+                        '/blog/react/react',
+                        '/blog/react/router',
+                        '/blog/react/redux'
+                    ]
+                },
+                {
+                    title: 'flutter',
+                    children: [
+                        '/blog/flutter/button',
+                        '/blog/flutter/getx',
                     ]
                 },
                 {
