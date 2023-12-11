@@ -8,18 +8,10 @@ module.exports = {
         nav: [
             { text: '知识库', link: '/blog/design/单例模式' },
             { text: '面试', link: '/interview/ms/第七章 工作经验' },
-            { text: '工作经验总结', link: '/experience/request/index' },
+            { text: '总结', link: '/experience/request/index' },
+
         ],
         sidebar:{
-            '/experience/':[
-                {
-                    title:'请求相关',
-                    children:[
-                        '/experience/request/index'
-                    ]
-
-                }
-            ],
             '/interview/':[
                 {
                     title: '2周面试',
@@ -186,13 +178,13 @@ module.exports = {
                         '/blog/react/redux'
                     ]
                 },
-                // {
-                //     title: 'flutter',
-                //     children: [
-                //         '/blog/flutter/button',
-                //         '/blog/flutter/getx',
-                //     ]
-                // },
+                {
+                    title: 'flutter',
+                    children: [
+                        '/blog/flutter/button',
+                        '/blog/flutter/getx',
+                    ]
+                },
                 {
                     title: '工程化',
                     children: [
@@ -203,6 +195,14 @@ module.exports = {
                     ]
                 },
                 
+            ],
+            '/experience/':[
+                {
+                    title:'请求相关',
+                    children:[
+                        '/experience/request/请求',
+                    ]
+                }
             ],
          
            
