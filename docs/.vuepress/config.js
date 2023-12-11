@@ -8,7 +8,7 @@ module.exports = {
         nav: [
             { text: '知识库', link: '/blog/design/单例模式' },
             { text: '面试', link: '/interview/ms/第七章 工作经验' },
-            { text: '总结', link: '/experience/request/index' },
+            { text: '总结', link: '/experience/request/请求' },
 
         ],
         sidebar:{
