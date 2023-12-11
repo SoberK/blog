@@ -186,13 +186,13 @@ module.exports = {
                         '/blog/react/redux'
                     ]
                 },
-                {
-                    title: 'flutter',
-                    children: [
-                        '/blog/flutter/button',
-                        '/blog/flutter/getx',
-                    ]
-                },
+                // {
+                //     title: 'flutter',
+                //     children: [
+                //         '/blog/flutter/button',
+                //         '/blog/flutter/getx',
+                //     ]
+                // },
                 {
                     title: '工程化',
                     children: [
