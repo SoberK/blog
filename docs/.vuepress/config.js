@@ -14,9 +14,16 @@ module.exports = {
         sidebar:{
             '/interview/':[
                 {
+                    title: '随机题库',
+                    children: [
+                        '/interview/随机题库-基础',
+                        '/interview/随机题库-手写',
+                    ],
+                },
+                {
                     title: '2周面试',
                     children: [
-                        '/interview/ms/第七章 工作经验', 
+                        '/interview/ms/第七章 工作经验',
                         '/interview/ms/第七章 真实项目',
                         '/interview/ms/第九章 解决问题',
                         '/interview/ms/第二、三章 算法结构和算法',
@@ -28,9 +35,9 @@ module.exports = {
                 {
                     title: 'js相关',
                     children: [
-                        '/interview/js/js', 
+                        '/interview/js/js',
                         '/interview/js/map和weakMap',
-                         '/interview/js/事件循环', 
+                         '/interview/js/事件循环',
                          '/interview/js/原型'
                        ],
                 },
@@ -86,7 +93,8 @@ module.exports = {
                         '/interview/vue/47.页面刷新后vuex的state数据丢怎么解决？',
                         '/interview/vue/48.你觉得vuex有什么缺点',
                         '/interview/vue/49.compositonApi和optionApi的区别',
-                        '/interview/vue/50.v-if和v-show的区别'
+                        '/interview/vue/50.v-if和v-show的区别',
+                        '/interview/vue/51.生命周期相关'
                     ],
                 },
                 {
@@ -100,9 +108,18 @@ module.exports = {
                         '/interview/webpack',
                     ],
                 },
-                
+
             ],
             '/blog/':[
+                {
+                    title: 'python',
+                    children: [
+                        '/blog/python/基础语法',
+                        '/blog/python/面向对象',
+                        '/blog/python/网络相关',
+                        '/blog/python/mysql',
+                    ],
+                },
                 {
                     title: 'linux',
                     children: [
@@ -121,7 +138,7 @@ module.exports = {
                 {
                     title: 'nodejs',
                     children: [
-                        '/blog/nodejs/docker', 
+                        '/blog/nodejs/docker',
                         '/blog/nodejs/mongo',
                          '/blog/nodejs/基本学习'
                     ],
@@ -129,13 +146,14 @@ module.exports = {
                 {
                     title: '设计模式',
                     children: [
+                        '/blog/design/总汇',
                         '/blog/design/单例模式',
                         '/blog/design/策略模式'],
                 },
                 {
                     title: 'git',
                     path: '/blog/git/git'
-                        
+
                 },
                 {
                     title: 'pinia',
@@ -144,7 +162,7 @@ module.exports = {
                 {
                     title: 'typescript',
                     children: [
-                        '/blog/typescript/1.类的装饰器', 
+                        '/blog/typescript/1.类的装饰器',
                         '/blog/typescript/2.面向对象编程',
                         '/blog/typescript/3.工具类型'
                     ]
@@ -194,7 +212,7 @@ module.exports = {
                         '/blog/project/脚手架',
                     ]
                 },
-                
+
             ],
             '/experience/':[
                 {
@@ -204,8 +222,8 @@ module.exports = {
                     ]
                 }
             ],
-         
-           
+
+
         }
     }
 }

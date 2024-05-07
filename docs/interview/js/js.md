@@ -1,5 +1,4 @@
 
-
 ### 1.js精度问题
 
 主要是因为js采用了`IEEE 754`标准，小数位只能存54位，所以有精度问题，使用big.js或者decimeal.js
@@ -9,8 +8,6 @@
 > 什么是作用链
 
 当访问一个变量时，解释器会首先在当前作用域中查找标识符，如果没找到，就去父作用域找，直到找到该变量的标识符或没找到为止。这条寻找的链路就叫作用域链
-
-
 
 > 什么是闭包
 
@@ -73,8 +70,6 @@
     d();//1
     d();//2
     ```
-
-    
 
 ### 3.JS数据类型
 
@@ -171,32 +166,6 @@ const s = BigInt(12312312312312)
 当读取实例的属性时，如果找不到，就会查找与对象关联的原型中的属性，如果还查不到，就去找原型的原型，一直找到最顶层为止。这条查找的路径就叫原型链
 
 
-
-### 8.js中的垃圾回收机制
-
-> 什么是内存泄漏
-
-
-
-内存是运行时操作系统分配给浏览器的内存空间，对于正在运行的内存需要及时释放，如果不及时释放，内存会越来越高，轻则影响系统性能，重则导致进程崩溃。不在使用的内存没有及时释放，就叫做内存泄漏。
-
-影响内存泄漏的原因
-
-+ 全局的声明变量，解决：使用var let、const
-+ 忘记关闭的定时器
-+ 使用闭包
-
-
-
-> 垃圾回收机制
-
-+ 标记清除
-
-  垃圾回收程序运行的时候，会标记内存中存储的所有变量。然后，它会将所有在上下文中的变量，以及被在上下文中的变量引用的变量的标记去掉。在此之后再被加上标记的变量就是待删除的了，原因是任何在上下文中的变量都访问不到它们了。随后垃圾回收程序做一次**内存清理**，销毁带标记的所有值并收回它们的内存。
-
-+ 引用计数
-
-​	另一种**没那么常用的**垃圾回收策略是**引用计数**（referencecounting）。其思路是对每个值都记录它被引用的次数。声明量	并给它赋一个引用值时，这个值的引用数为1。如果同一个值又被赋给另一个变量，那么引用数加1。类似地，如果保存对该值	引用的变量被其他值给覆盖了，那么引用数减1。当一个值的引用数为0时，就说明没办法再访问到这个值了，因此可以安全地	收回其内存了。垃圾回收程序下次运行的时候就会释放引用数为0的值的内存。但是会有循环引用的问题，导出出现bug.
 
 
 
@@ -496,7 +465,7 @@ console.log(cat instanceof Cat); //true
 
 - 通过bind改变this作用域会返回一个新的函数，这个函数不会马上执行。
 
-  ### 25.js的各种位置，比如clientHeight,scrollHeight,offsetHeight ,以及scrollTop, offsetTop,clientTop的区别？
+### 25.js的各种位置，比如clientHeight,scrollHeight,offsetHeight ,以及scrollTop, offsetTop,clientTop的区别？
 
 - clientHeight：表示的是可视区域的高度，不包含border和滚动条
 - offsetHeight：表示可视区域的高度，包含了border和滚动条
@@ -504,4 +473,128 @@ console.log(cat instanceof Cat); //true
 - clientTop：表示边框border的厚度，在未指定的情况下一般为0
 - scrollTop：滚动后被隐藏的高度，获取对象相对于由offsetParent属性指定的父坐标(css定位的元素或body元素)距离顶端的高度。
 
-## 
+### 26.js 原型，原型链，继承
+
+#### 原型链与继承
+
+原型链，是实现js的基础方式，所有的构造函数都有一个原型对象，原型的construct 属性指向了构造函数。这是一个循环的闭合链圈，如果我们将construct 指向另一个构造函数，而另一个构造函数的construct再指向另外一个构造函数，这样就在实例和原型之间构造了一条原型链。
+
+原型的基本结构
+
+```
+function Lop(){
+	this.name = '1'
+}
+Lop.prototype.age = '2'
+new Lop()
+
+Lop
+	name:2
+	prototype:{
+		constructor: Lop
+	}
+
+```
+
+#### 原型链继承
+
+```
+function Lop(){
+this.name = 'Lop'
+}
+Lop.prototype.age = '23'
+function Lob(){
+
+}
+Lob.prototype = new Lop();
+let lob = new Lob()
+console.log(lob)
+console.log(lob.name)
+console.log(lob.age)
+
+```
+
+![image-20220925172532067](/Users/fanrongkong/Library/Application Support/typora-user-images/image-20220925172532067.png)
+
+
+
+原型链的问题
+
+引用类型的对象有个问题，他会修改原型上的数据。列入
+
+```
+    		function Lop(){
+            this.name = 'Lop'
+        }
+        Lop.prototype.age = ['23']
+
+        function Lob(){
+            this.natallme = '187cm'
+        }
+        Lob.prototype = new Lop();
+        Lob.prototype.constructor = Lob
+        let lob = new Lob()
+        let lob2 = new Lob()
+        lob.age.push('2')
+        console.log(lob2.age) //['23', '2']
+```
+
+这样明显不对的。
+
+
+
+#### 盗用构造函数（经典进程或者叫对象伪装）
+
+```
+ function Lop(){
+ 	this.name = 'Lop'
+ }
+ Lop.prototype.age = ['23']
+function Lob(){
+  Lop.call(this);
+  this.natallme = '187cm'
+}
+let lob = new Lob()
+let lob2 = new Lob()
+
+```
+
+缺点：不能访问父级的prototype
+
+
+
+#### 组合继承（盗用构造函数+原型继承）
+
+```
+ function Lop(){
+            this.name = ['Lop']
+        }
+        Lop.prototype.age = ['23']
+
+        function Lob(){
+            Lop.call(this); //继承之后能够让数组也能重新计算。
+            this.natallme = '187cm'
+        }
+        Lob.prototype = new Lop() //用来能访问父级的原型
+        let lob = new Lob()
+        let lob2 = new Lob()
+        lob.name.push('2')
+        console.log(lob)
+        console.log(lob.name)(2) ['Lop', '2']
+        console.log(lob2.name)['Lop']
+        console.log(lob2.age)['23']
+        
+
+```
+
+### 27.严格模式有什么特点
+
+1. 全局变量必须先声明才能使用
+2. 禁止删除变量或函数
+3. 禁止 "this" 关键字指向全局对象
+4. 禁止使用 with 语句
+5. 禁止使用 eval() 函数
+6. 禁止使用 arguments.callee 和 arguments.caller 属性
+7. 禁止使用 arguments 对象的 length 属性
+8. 函数参数不能重名
+9. 禁止使用八进制数
