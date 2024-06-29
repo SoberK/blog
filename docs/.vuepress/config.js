@@ -8,7 +8,7 @@ module.exports = {
         nav: [
             { text: '知识库', link: '/blog/design/单例模式' },
             { text: '面试', link: '/interview/ms/第七章 工作经验' },
-            { text: '总结', link: '/experience/request/请求' },
+            { text: '读书', link: '/read/无痛自律' },
 
         ],
         sidebar:{
@@ -18,6 +18,7 @@ module.exports = {
                     children: [
                         '/interview/随机题库-基础',
                         '/interview/随机题库-手写',
+                        '/interview/高频面试题',
                     ],
                 },
                 {
@@ -33,10 +34,15 @@ module.exports = {
                         '/interview/ms/第四章 基础面试'],
                 },
                 {
+                    title: 'ts相关',
+                    children: [
+                         '/interview/ts/基础问题'
+                       ],
+                },
+                {
                     title: 'js相关',
                     children: [
                         '/interview/js/js',
-                        '/interview/js/map和weakMap',
                          '/interview/js/事件循环',
                          '/interview/js/原型'
                        ],
@@ -112,6 +118,12 @@ module.exports = {
             ],
             '/blog/':[
                 {
+                    title: '新一代css',
+                    children: [
+                        '/blog/新一代css/grid布局',
+                    ],
+                },
+                {
                     title: 'python',
                     children: [
                         '/blog/python/基础语法',
@@ -155,9 +167,13 @@ module.exports = {
                 {
                     title: '设计模式',
                     children: [
-                        '/blog/design/总汇',
+                        '/blog/design/工厂模式',
                         '/blog/design/单例模式',
-                        '/blog/design/策略模式'],
+                        '/blog/design/策略模式',
+                        '/blog/design/迭代器模式',
+                        '/blog/design/观察者发布订阅模式',
+                        '/blog/design/总汇'
+                    ],
                 },
                 {
                     title: 'git',
@@ -223,11 +239,11 @@ module.exports = {
                 },
 
             ],
-            '/experience/':[
+            '/read/':[
                 {
-                    title:'请求相关',
+                    title:'自我控制',
                     children:[
-                        '/experience/request/请求',
+                        '/read/无痛自律',
                     ]
                 }
             ],
