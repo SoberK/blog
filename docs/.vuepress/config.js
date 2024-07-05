@@ -16,7 +16,8 @@ module.exports = {
                 {
                     title: '随机题库',
                     children: [
-                        '/interview/随机题库-基础',
+                        '/interview/网络',
+                        '/interview/css篇',
                         '/interview/随机题库-手写',
                         '/interview/高频面试题',
                     ],
@@ -44,13 +45,11 @@ module.exports = {
                     children: [
                         '/interview/js/js',
                          '/interview/js/事件循环',
-                         '/interview/js/原型'
                        ],
                 },
                 {
                     title: 'vue相关',
                     children: [
-                        '/interview/vue/0.vue',
                         '/interview/vue/1.组件通讯',
                         '/interview/vue/2.v-if和v-for',
                         '/interview/vue/3.简述vue生命周期',
