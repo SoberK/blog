@@ -66,22 +66,6 @@ Flex 是 Flexible Box 的缩写，意为"弹性布局"，用来为盒状模型�
 
 比如说，用 flex 实现圣杯布局
 
-## BFC（块级格式化上下文，用于清楚浮动，防止 margin 重叠等）
-
-直译成：块级格式化上下文，是一个独立的渲染区域，并且有一定的布局规则。
-
-- BFC 区域不会与 float box 重叠
-- BFC 是页面上的一个独立容器，子元素不会影响到外面
-- 计算 BFC 的高度时，浮动元素也会参与计算
-
-那些元素会生成 BFC：
-
-- 根元素
-- float 不为 none 的元素
-- position 为 fixed 和 absolute 的元素
-- display 为 inline-block、table-cell、table-caption，flex，inline-flex 的元素
-- overflow 不为 visible 的元素
-
 ## 垂直居中的方法
 
 ### (1)margin:auto 法
@@ -197,16 +181,18 @@ css
 
 ## 多行元素的文本省略号
 
-less
-
-`display: -webkit-box
+```less
+display: -webkit-box
 -webkit-box-orient:vertical
 -web-line-clamp:3
-overflow:hidden`
+overflow:hidden
+```
 
 ## visibility=hidden, opacity=0，display:none
 
-opacity=0，该元素隐藏起来了，但不会改变页面布局，并且，如果该元素已经绑定一些事件，如 click 事件，那么点击该区域，也能触发点击事件的 visibility=hidden，该元素隐藏起来了，但不会改变页面布局，但是不会触发该元素已经绑定的事件 display=none，把元素隐藏起来，并且会改变页面布局，可以理解成在页面中把该元素删除掉一样。
+opacity=0，该元素隐藏起来了，但不会改变页面布局，并且，如果该元素已经绑定一些事件，如 click 事件，那么点击该区域，也能触发点击事件的
+visibility=hidden，该元素隐藏起来了，但不会改变页面布局，但是不会触发该元素已经绑定的事件
+display=none，把元素隐藏起来，并且会改变页面布局，可以理解成在页面中把该元素删除掉一样。
 
 ## 双边距重叠问题（外边距折叠）
 
@@ -222,21 +208,42 @@ opacity=0，该元素隐藏起来了，但不会改变页面布局，并且，�
 
 **第一种：flex**
 
-css
-
-`<div class="container">     <div class="left">left</div>     <div class="main">main</div>     <div class="right">right</div> </div> .container{     display: flex; } .left{     flex-basis:200px;     background: green; } .main{     flex: 1;     background: red; } .right{     flex-basis:200px;     background: green; }`
+```html
+<div class="container">
+  <div class="left">left</div>
+  <div class="main">main</div>
+  <div class="right">right</div>
+</div>
+.container{ display: flex; } .left{ flex-basis:200px; background: green; }
+.main{ flex: 1; background: red; } .right{ flex-basis:200px; background: green;
+}
+```
 
 **第二种：position + margin**
 
-css
-
-`<div class="container">     <div class="left">left</div>     <div class="right">right</div>     <div class="main">main</div> </div> body,html{     padding: 0;     margin: 0; } .left,.right{     position: absolute;     top: 0;     background: red; } .left{     left: 0;     width: 200px; } .right{     right: 0;     width: 200px; } .main{     margin: 0 200px ;     background: green; }`
+```html
+<div class="container">
+  <div class="left">left</div>
+  <div class="right">right</div>
+  <div class="main">main</div>
+</div>
+body,html{ padding: 0; margin: 0; } .left,.right{ position: absolute; top: 0;
+background: red; } .left{ left: 0; width: 200px; } .right{ right: 0; width:
+200px; } .main{ margin: 0 200px ; background: green; }
+```
 
 **第三种：float + margin**
 
-css
-
-`<div class="container">     <div class="left">left</div>     <div class="right">right</div>     <div class="main">main</div> </div> body,html{     padding:0;     margin: 0; } .left{     float:left;     width:200px;     background:red; } .main{     margin:0 200px;     background: green; } .right{     float:right;     width:200px;     background:red; }`
+```html
+<div class="container">
+  <div class="left">left</div>
+  <div class="right">right</div>
+  <div class="main">main</div>
+</div>
+body,html{ padding:0; margin: 0; } .left{ float:left; width:200px;
+background:red; } .main{ margin:0 200px; background: green; }
+.right{float:right; width:200px; background:red; }
+```
 
 ## CSS 权重计算方式
 
@@ -259,23 +266,28 @@ CSS 基本选择器包含 ID 选择器、类选择器、标签选择器、通配
 
 ## BFC
 
-BFC 的全称为 `Block Formatting Context`，也就是块级格式化上下文的意思。
+浏览器渲染的问题：
+
+- 父子关系，可能会**margin 坍塌**
+- 父子关系，父元素无视浮动元素会产生**高度坍塌**（比如子元素浮动，父元素的高度就变小了）
+- 兄弟关系，正常元素可能会被**浮动元素覆盖**
+
+为了解决这些问题：
+BFC 的全称为 `Block Formatting Context`，也就是块级格式化上下文的意思。开启后是一个独立的空间，隔绝了与外部的联系，内部不会影响外部，互不影响
 
 **以下方式都会创建 BFC：**
 
 - 根元素(html)
-- 浮动元素（元素的 float 不是 none）
-- 绝对定位元素（元素的 position 为 absolute 或 fixed）
-- 行内块元素（元素的 display 为 inline-block）
-- 表格单元格（元素的 display 为 table-cell，HTML 表格单元格默认为该值）
+- 浮动元素 **（元素的 float 不是 none）**
+- 绝对定位元素 **（元素的 position 为 absolute 或 fixed）**
+- overflow 值不为 **visible** 的块元素
+- 行内块元素 **（元素的 display 为 inline-block、table-cell、flow-root）**
 - 表格标题（元素的 display 为 table-caption，HTML 表格标题默认为该值）
-- 匿名表格单元格元素（元素的 display 为 table、table-row、table-row-group、table-header-group、table-footer-group（分别是 HTML table、row、tbody、thead、tfoot 的默认属性）或 inline-table）
-- overflow 值不为 visible 的块元素
-- display 值为 flow-root 的元素
 - contain 值为 layout、content 或 paint 的元素
 - 弹性元素（display 为 flex 或 inline-flex 元素的直接子元素）
 - 网格元素（display 为 grid 或 inline-grid 元素的直接子元素）
 - 多列容器（元素的 column-count 或 column-width 不为 auto，包括 column-count 为 1） column-span 为 all 的元素始终会创建一个新的 BFC，即使该元素没有包裹在一个多列容器中（标准变更，Chrome bug）。
+- 匿名表格单元格元素（元素的 display 为 table、table-row、table-row-group、table-header-group、table-footer-group（分别是 HTML table、row、tbody、thead、tfoot 的默认属性）或 inline-table）
 
 **BFC 布局规则：**
 
@@ -285,34 +297,6 @@ BFC 的全称为 `Block Formatting Context`，也就是块级格式化上下文�
 4.  BFC 的区域不会与 float 的元素区域重叠。
 5.  计算 BFC 的高度时，浮动子元素也参与计算。
 6.  BFC 就是页面上一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。
-
-**BFC 能解决的问题：**
-
-1.  父元素塌陷
-2.  外边距重叠
-3.  清除浮动
-
-## 清除浮动的方法
-
-清除浮动主要是为了防止父元素塌陷。清除浮动的方法有很多，常用的是 `clearfix` 伪类。
-
-**方法一：clearfix**
-
-css
-
-`<div class="outer clearfix">     <div class="inner">inner</div> </div> .outer{     background: blue; } .inner{     width: 100px;     height: 100px;     background: red;     float: left; } .clearfix:after{     content: "";     display: block;     height: 0;     clear:both;     visibility: hidden; }`
-
-**方法二：额外加一个 div，clear:both**
-
-css
-
-`<div class="container">     <div class="inner"></div>     <div class="clear"></div> </div> .container{     background: blue; } .inner {     width: 100px;     height: 100px;     background: red;     float: left; } .clear{     clear:both; }`
-
-**方法三：触发父盒子 BFC，overflow:hidden**
-
-css
-
-`<div class="outer">     <div class="inner">inner</div> </div> .outer{     background: blue;     overflow: hidden; } .inner {     width: 100px;     height: 100px;     background: red;     float: left; }`
 
 ## 如何实现一个自适应的正方形
 
