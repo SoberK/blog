@@ -16,8 +16,9 @@ module.exports = {
                 {
                     title: '随机题库',
                     children: [
-                        '/interview/网络',
+                        '/interview/boss直聘篇',
                         '/interview/css篇',
+                        '/interview/boss直聘篇',
                         '/interview/随机题库-手写',
                         '/interview/高频面试题',
                     ],
