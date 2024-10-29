@@ -218,6 +218,7 @@ module.exports = {
                     children: [
                         '/blog/react/react',
                         '/blog/react/router',
+                        '/blog/react/note',
                         '/blog/react/redux'
                     ]
                 },
