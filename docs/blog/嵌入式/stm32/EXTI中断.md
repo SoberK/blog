@@ -18,11 +18,11 @@
 
 基本结构
 
-![nvic结构](/Users/fanrongkong/code/Project/网盘/vuepress-blog/docs/blog/嵌入式/images/中断/nvic结构.png)
+![nvic结构](../images/中断/nvic结构.png)
 
 优先级：
 
- ![nvic优先级](/Users/fanrongkong/code/Project/网盘/vuepress-blog/docs/blog/嵌入式/images/中断/nvic优先级.png)
+ ![nvic优先级](../images/中断/nvic优先级.png)
 
 + 值越小优先级越高
 + 抢断优先级：中断当前正在运行的程序
@@ -40,7 +40,7 @@
 + 通道数：16个GPIO_Pin，外加PVD输出、RTC闹钟、USB唤醒、以太网唤醒
 + 触发响应方式：中断响应/事件响应
 
-![nvic结构](/Users/fanrongkong/code/Project/网盘/vuepress-blog/docs/blog/嵌入式/images/中断/EXTI基本结构.png)
+![nvic结构](../images/中断/EXTI基本结构.png)
 
 ### AFIO
 

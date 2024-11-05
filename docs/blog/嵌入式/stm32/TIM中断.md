@@ -11,7 +11,7 @@
 
 ## 定时器分类
 
-![Tim定时器类型](/Users/fanrongkong/code/Project/网盘/vuepress-blog/docs/blog/嵌入式/images/中断/Tim定时器类型.jpg)
+![Tim定时器类型](../images/中断/Tim定时器类型.jpg)
 
 
 
