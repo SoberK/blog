@@ -1,6 +1,16 @@
-# TIM外部时钟定时器
+# TIM ETR外部时钟定时器
 
 ![ ](../images/中断/定时中断基本结构.jpg)
+
+## 外部中断执行流程
+
+***打开时钟TIm->配置GPIO口-> 配置外部时钟源->配置时基单元->配置终端输出->配置nvic->使能->监听*** 
+
+
+
+
+
+
 
 ### 1. 外部时钟模式介绍
 
@@ -39,14 +49,12 @@ STM32 定时器支持以下几种外部时钟模式：
 1. **配置定时器的外部时钟模式**： 使用 `TIM_TIxExternalClockConfig` 配置 TIM2 以 TI1 引脚作为外部时钟源。
 
    ```
-   TIx外部时钟
-   TIM_TIxExternalClockConfig(TIM2, TIM_TIxExternalCLK1Source_TI1, TIM_ICPolarity_Rising, 0);
-   //or
+   
    ERT外部时钟
    TIM_ETRClockMode2Config(TIM2, TIM_ExtTRGPSC_OFF, TIM_ExtTRGPolarity_NonInverted, 0x0F);
    
    ```
-
+   
    这里指定 TIM2 的外部时钟源为 TI1，引脚上升沿有效，不使用输入滤波（滤波设置为 0）。
 
 2. **设置 TIM2 计数周期**： 设置自动重装载寄存器（ARR），例如设置为 999，意味着计数到 1000 次触发溢出。

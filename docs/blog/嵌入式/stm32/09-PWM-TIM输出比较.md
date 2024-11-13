@@ -47,6 +47,8 @@
 
 
 
+72 000 000 / psc/arr =  
+
 
 
 
@@ -78,3 +80,36 @@
 TB6612FNG模块 输入电压建议12V或者以内
 
 该模块相对于传统的**L298N**效率上提高很多,体积上也大幅度减少，在额定范围内，芯片基本不发热，当然也就显得更加娇贵,所以我们建议有一定动手能力的朋友使用,接线的时候务必细心细心再细心，注意正负极性。
+
+
+
+
+
+
+
+## 代码流程
+
+***打开时钟TIm->配置gpio口-> 配置时钟源->配置时基单元-> 配置输出比较 ->使能*** 
+
+
+
+### 配置输出比较
+
+	TIM_OCInitTypeDef TIM_OCInitStructure;							//定义结构体变量
+	TIM_OCStructInit(&TIM_OCInitStructure);							//结构体初始化，若结构体没有完整赋值
+																	//则最好执行此函数，给结构体所有成员都赋一个默认值
+																	//避免结构体初值不确定的问题
+	TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;				//输出比较模式，选择PWM模式1
+	TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;		//输出极性，选择为高，若选择极性为低，则输出高低电平取反
+	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;	//输出使能
+	TIM_OCInitStructure.TIM_Pulse = 0;								//初始的CCR值
+	TIM_OC1Init(TIM2, &TIM_OCInitStructure);
+
+
+
+
+
+
+
+
+
