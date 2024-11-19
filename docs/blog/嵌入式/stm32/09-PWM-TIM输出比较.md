@@ -47,7 +47,9 @@
 
 
 
-72 000 000 / psc/arr =  
+
+
+
 
 
 
@@ -104,6 +106,22 @@ TB6612FNG模块 输入电压建议12V或者以内
 	TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;	//输出使能
 	TIM_OCInitStructure.TIM_Pulse = 0;								//初始的CCR值
 	TIM_OC1Init(TIM2, &TIM_OCInitStructure);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

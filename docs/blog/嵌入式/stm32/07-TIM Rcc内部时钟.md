@@ -45,8 +45,10 @@ STM32 的计数频率公式是：
 
 
 
-ftimer = fstyem  / psc+1     
+ftimer = fstyem  / （psc+1）     
 
+> > 
+> >
 > > Fstyme 默认72Mhz =  72 000 000
 > >
 > > ftime =  10000hz 假设一个值
