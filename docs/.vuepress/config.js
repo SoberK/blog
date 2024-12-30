@@ -142,6 +142,19 @@ module.exports = {
                     ],
                 },
                 {
+                    title: 'pyqt6',
+                    children: [
+                        '/blog/pyqt6/0.学习路径',
+                        '/blog/pyqt6/1.QLabel_Notes',
+                        '/blog/pyqt6/2.QWidget_Notes',
+                        '/blog/pyqt6/3.QLineEdit',
+                        '/blog/pyqt6/4.QTextEdit',
+                        '/blog/pyqt6/5.QPlainTextEdit',
+                        '/blog/pyqt6/6.QSpinBox',
+                        '/blog/pyqt6/7.QDoubleSpinBox'
+                    ],
+                },
+                {
                     title: 'linux',
                     children: [
                         '/blog/linux/目录',
